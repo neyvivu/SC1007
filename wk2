@@ -13,7 +13,7 @@ void removes(char *s, int n);
 void main ()
 {
 	int n;
-  char *s;
+  	char *s;
 	int choice;
 
 
@@ -22,11 +22,11 @@ void main ()
 
 	s=(char *)malloc((n+1)*sizeof(char));
 
-    if (s==NULL)
-	{
+    	if (s==NULL)
+		{
 		printf("can't allocate the memory!");
 		return;
-	}
+		}
 
 	printf("Input the string:");
 	scanf("%s",s);
@@ -34,7 +34,7 @@ void main ()
 	printf("The string is %s\n", s);
 
 	do
-	{
+		{
 		printf("Do you want to 1-insert or 2-remove or 3-quit?:");
 		scanf("%d",&choice);
 		//getchar(); //to clear the return carriage in the buffer
@@ -88,3 +88,61 @@ void insert(char *s, int n)
 
   printf("Resulting string: %s\n", s);
 }
+
+Q2:
+////////////////////////////////////////////////////////////
+
+
+//#define _CRT_SECURE_NO_WARNINGS
+#include <stdlib.h>
+#include <stdio.h>
+
+////////////////////////////////////////////////////////////
+
+typedef struct _listnode{
+	int item;
+	struct _listnode *next;
+} ListNode;
+
+
+void main()
+{
+	ListNode *head, *p, *temp;
+	int n;
+
+	head=NULL;
+	p=NULL;		// pointing to the last node in the list
+	printf("Enter a list of numbers, terminated by the value -1:\n");
+
+	do {
+	  temp = (ListNode*) malloc(sizeof(ListNode));
+	  scanf("%d", &temp->item);
+
+	  if(temp->item == -1) {
+	    free(temp);
+	    break;
+  	}
+
+	temp->next = NULL;
+
+	if(head == NULL) {
+	    head = temp;
+	  }
+	else {
+	    p->next = temp;
+	  }
+
+	p = temp;
+	} while(1);
+
+	printf("Current list: ");
+
+  p = head;
+  while(p != NULL) {
+    printf("%d ", p->item);
+    p = p->next;
+  }
+
+  printf("\n");
+}
+
