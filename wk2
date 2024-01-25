@@ -146,3 +146,77 @@ void main()
   printf("\n");
 }
 
+Q3: 
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct _listnode{
+	int item;
+	struct _listnode *next;
+} ListNode;
+
+void printList(ListNode *head) {
+    if (head==NULL)
+      return;
+    while (head != NULL) {
+        printf("%d ", head->item);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+int searchList(ListNode *head, int value);
+
+void main()
+{
+	ListNode *head, *p, *temp;
+	int n;
+
+	head=NULL;
+	p=NULL;		// pointing to the last node in the list
+	printf("Enter a list of numbers, terminated by the value -1:\n");
+
+	while (1) {
+		scanf("%d", &n);
+		if (n == -1)
+			break;
+
+		temp = (ListNode *)malloc(sizeof(ListNode));
+		if (temp == NULL) {
+			exit(0); // Out of memory, exit
+		}
+		temp->item = n;
+		temp->next = NULL;
+
+		if (head == NULL) {
+			head = temp;
+			p = temp;
+		} else {
+			p->next = temp;
+			p = temp;
+		}
+	}
+
+	printf("Current list: ");
+	printList(head);
+
+  printf("Enter value to search for:");
+	scanf("%d", &n);
+	if (searchList(head, n)) {
+		printf("Value found in the list.\n");
+	} else {
+		printf("Value not found in the list.\n");
+	}
+}
+
+int searchList(ListNode *head, int value)
+{
+	ListNode *temp = head;
+	while (temp != NULL) {
+		if (temp->item == value) {
+			return 1;
+		}
+		temp = temp->next;
+	}
+	return 0;
+}
