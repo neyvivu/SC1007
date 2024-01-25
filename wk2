@@ -165,7 +165,18 @@ void printList(ListNode *head) {
     printf("\n");
 }
 
-int searchList(ListNode *head, int value);
+int searchList(ListNode *head, int value)
+{
+	ListNode *temp = head;
+	while (temp != NULL) {
+		if (temp->item == value) {
+			return index;
+		}
+		temp = temp->next;
+		index++;
+	}
+	return -1;
+}
 
 void main()
 {
@@ -200,23 +211,13 @@ void main()
 	printf("Current list: ");
 	printList(head);
 
-  printf("Enter value to search for:");
+  int index;
+	printf("Enter value to search for:");
 	scanf("%d", &n);
-	if (searchList(head, n)) {
-		printf("Value found in the list.\n");
+	index = searchList(head, n);
+	if (index != -1) {
+		printf("Value %d found at index %d.\n", n, index);
 	} else {
 		printf("Value not found in the list.\n");
 	}
-}
-
-int searchList(ListNode *head, int value)
-{
-	ListNode *temp = head;
-	while (temp != NULL) {
-		if (temp->item == value) {
-			return 1;
-		}
-		temp = temp->next;
-	}
-	return 0;
 }
