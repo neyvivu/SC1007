@@ -167,6 +167,7 @@ void printList(ListNode *head) {
 
 int searchList(ListNode *head, int value)
 {
+  int index = 0;
 	ListNode *temp = head;
 	while (temp != NULL) {
 		if (temp->item == value) {
@@ -182,6 +183,7 @@ void main()
 {
 	ListNode *head, *p, *temp;
 	int n;
+  int index = 0;
 
 	head=NULL;
 	p=NULL;		// pointing to the last node in the list
@@ -211,7 +213,6 @@ void main()
 	printf("Current list: ");
 	printList(head);
 
-  int index;
 	printf("Enter value to search for:");
 	scanf("%d", &n);
 	index = searchList(head, n);
